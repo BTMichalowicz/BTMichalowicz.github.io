@@ -76,11 +76,104 @@
 
 
   header{
-    padding-top: 50px;
-    padding-bottom: 45px;
+    padding-top: 30px;
+    padding-bottom: 35px;
     font-family: 'Arial', Gotham, Lucida, sans-serif,'Architects Daughter', 'Helvetica Neue', Arial, serif;
 
 
-    background: #2e7bcf url('https://s-media-cache-ak0.pinimg.com/236x/cb/1b/72/cb1b720fbc881f8d0c2d124b509923c4.jpg')0 0 repeat-x;
+    background: #2e7bcf url('http://www.graphicient.com/wp-content/uploads/2014/08/1363507-cool-website-backgrounds.jpg')0 0 repeat-x;
     border-bottom: solid 1px #275da1;
+  }
+
+
+  header h1{
+    letter-spacing: -1px;
+    font-size:60px;
+    color:#fff;
+    line-height: 1;
+    margin-bottom:0.2em;
+    width:540px;
+  }
+  header h2{
+    font-size: 25px;
+    color: #ffc;
+    font-weight:normal;
+    line-height:1.2;
+    width:540px;
+    letter-spacing:0.5;
+  }
+
+  .inner{
+
+    position: relative;
+    width: 945px;
+    margin: 0 auto;
+  }
+
+  #wrapper-class1{
+    border-top: solid 1.5px #fff;
+    padding-top: 30px;
+
+  }
+
+  #main-content{
+    width: 685px;
+    float:left;
+  }
+
+
+  #main-content img{
+    max-width:99%;
+  }
+
+
+  aside#sidebar_links{
+
+    width:350px;
+    padding-left: 30px;
+    min-height:500px;
+    float: right;
+
+
+    text-align: right;
+
+    background: transparent url('images/sidebar.jpg') 0 0 no-repeat;
+    font-size: 15px;
+    line-height: 1.2;
+  }
+
+  aside#sidebar_links p.repo-owner,
+  aside#sidebar_links p.repo-owner a{
+    font-weight:bold;
+  }
+
+  #downloads{
+    margin-bottom: 40px;
+  }
+
+
+  a.button{
+    width: 180px;
+    height:70px;
+    line-height:1.90;
+    font-size:15px;
+    color: #ffc;
+    padding-left:68px;
+    padding-top: 30px;
+
+    font-family: Arial, sans-serif, Gotham, Georgia, helvetica, 'Architects Daughter', 'Helvetica Neue', 'Arial, serif';
+  }
+
+  a.button small{
+    display: block;
+    font-size: 15px;
+  }
+
+  header a.button{
+    position: absolute;
+    right:0;
+    top: 0;
+    background: transparent url('images/Me.jpg') 0 0 no-repeat;
+    margin-bottom:20px;
+    font-size:21px;
   }
