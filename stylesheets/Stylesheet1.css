@@ -91,15 +91,15 @@
     font-size:60px;
     color:#fff;
     line-height: 1;
-    margin-bottom:0.2em;
-    width:540px;
+    margin-bottom:0.8em;
+    width:400px;
   }
   header h2{
     font-size: 25px;
     color: #ffc;
     font-weight:normal;
     line-height:1.2;
-    width:540px;
+    width:500px;
     letter-spacing:0.5;
   }
 
@@ -129,16 +129,16 @@
 
   aside#sidebar_links{
 
-    width:350px;
+    width:130px;
     padding-left: 30px;
     min-height:500px;
     float: right;
 
 
-    text-align: right;
 
-    background: transparent url('images/sidebar.jpg') 0 0 no-repeat;
-    font-size: 15px;
+
+    /*background: transparent url('../images/sidebar.jpg') 0 0 no-repeat;*/
+    font-size: 24px;
     line-height: 1.2;
   }
 
@@ -153,10 +153,10 @@
 
 
   a.button{
-    width: 180px;
+    width: 130px;;
     height:70px;
     line-height:1.90;
-    font-size:15px;
+    font-size:18px;
     color: #ffc;
     padding-left:68px;
     padding-top: 30px;
@@ -173,7 +173,19 @@
     position: absolute;
     right:0;
     top: 0;
-    background: transparent url('images/Me.jpg') 0 0 no-repeat;
-    margin-bottom:20px;
-    font-size:21px;
+
+    margin-bottom:50px;
+    font-size:20px;
+  }
+
+  aside a.button{
+    width:300px;
+    padding-left: 65px;
+    display: block;
+    float: left;
+    text-align: right;
+
+    margin-bottom: 20px;
+    font-size: 20px;
+
   }
