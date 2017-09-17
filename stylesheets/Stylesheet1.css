@@ -13,7 +13,8 @@ tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcap
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  background: transparent url('http://moheban-ahlebeit.com/images/Solid-Colors-Background/Solid-Colors-Background-8.jpg') 0 0 ;
+  background: transparent url('http://moheban-ahlebeit.com/images/Solid-Colors-Background/Solid-Colors-Background-8.jpg');
+  background-size: 6000px 6000px;
   background-repeat: repeat-y;
 
 }
@@ -116,7 +117,7 @@ padding-top: 15px;
   position: relative;
   width: 940px;
   margin: 0 auto;
-  background: transparent url('http://moheban-ahlebeit.com/images/Solid-Colors-Background/Solid-Colors-Background-8.jpg') 0 0 ;
+  background: transparent url('http://moheban-ahlebeit.com/images/Solid-Colors-Background/Solid-Colors-Background-8.jpg') 0 0 no-repeat;
   background-repeat: repeat-y;
 }
 
