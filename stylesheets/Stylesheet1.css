@@ -12,7 +12,13 @@ tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcap
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  background: transparent url('http://moheban-ahlebeit.com/images/Solid-Colors-Background/Solid-Colors-Background-8.jpg') 0 0 no-repeat;
+  background: transparent url('http://moheban-ahlebeit.com/images/Solid-Colors-Background/Solid-Colors-Background-8.jpg') 0 0 repeat;
+
+}
+
+html{
+    background: transparent url('http://moheban-ahlebeit.com/images/Solid-Colors-Background/Solid-Colors-Background-8.jpg') 0 0 repeat;
+  background-size: 3000px 5000px;
 }
 
 li, p {
@@ -73,6 +79,7 @@ header {
   padding-bottom: 40px;
   font-family: Arial, sans serif, Gotham, Helvetica, 'Architects Daughter', 'Helvetica Neue', Arial, serif;
   border-bottom: solid 1px #275da1;
+  background: transparent url(../images/CS.png) 0 0  no-repeat;
 }
 
 header h1 {
@@ -83,6 +90,7 @@ header h1 {
   margin-bottom: 0.2em;
   width: 540px;
 }
+
 
 header h2 {
   font-size: 26px;
@@ -324,7 +332,7 @@ form {
   font-family: Arial, sans serif, Gotham, Helvetica, 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 15px;
   font-weight: bold;
-  color: #474747;
+  color: #fff;
 }
 
 h4:before {
@@ -351,7 +359,7 @@ h5:before {
 #main-content h6 {
   font-family: sans serif, Gotham, 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: .8em;
-  color: #474747;
+  color: #fff;
 }
 
 h6:before {
