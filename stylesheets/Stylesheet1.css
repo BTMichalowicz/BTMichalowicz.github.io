@@ -12,7 +12,8 @@ tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcap
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  background: transparent url('http://moheban-ahlebeit.com/images/Solid-Colors-Background/Solid-Colors-Background-8.jpg') 0 0 repeat;
+  background: transparent url('http://moheban-ahlebeit.com/images/Solid-Colors-Background/Solid-Colors-Background-8.jpg') 0 0 ;
+  background-repeat: repeat-y;
 
 }
 
