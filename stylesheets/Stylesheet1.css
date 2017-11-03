@@ -16,11 +16,7 @@ tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcap
   background: transparent url('http://moheban-ahlebeit.com/images/Solid-Colors-Background/Solid-Colors-Background-8.jpg');
   background-size: 6000px 6000px;
   background-repeat: repeat-y;
-  -webkit-animation: fadein 1s ; /* Safari, Chrome and Opera > 12.1 */
-      -moz-animation: fadein 1s; /* Firefox < 16 */
-       -ms-animation: fadein 1s; /* Internet Explorer */
-        -o-animation: fadein 1s; /* Opera < 12.1 */
-           animation: fadein 1s;
+
 
 
 }
@@ -70,6 +66,11 @@ body {
   font-family: Arial, sans serif, Gotham, Helvetica, 'Helvetica Neue', Arial, serif;
   font-weight: 400;
   color: #fff;
+  -webkit-animation: fadein 1.2s ; /* Safari, Chrome and Opera > 12.1 */
+      -moz-animation: fadein 1.2s; /* Firefox < 16 */
+       -ms-animation: fadein 1.2s; /* Internet Explorer */
+        -o-animation: fadein 1.2s; /* Opera < 12.1 */
+           animation: fadein 1.2s;
 }
 
 a {
@@ -86,6 +87,11 @@ header {
   font-family: Arial, sans serif, Gotham, Helvetica, 'Architects Daughter', 'Helvetica Neue', Arial, serif;
   border-bottom: solid 1px #275da1;
   background: transparent url(../images/CS.png) 0 0  no-repeat;
+  -webkit-animation: fadein 0.8s ; /* Safari, Chrome and Opera > 12.1 */
+      -moz-animation: fadein 0.8s; /* Firefox < 16 */
+       -ms-animation: fadein 0.8s; /* Internet Explorer */
+        -o-animation: fadein 0.8s; /* Opera < 12.1 */
+           animation: fadein 0.8s;
 }
 
 header h1 {
@@ -182,6 +188,12 @@ aside#sidebar {
   background-size: 200px 110 px;
   font-size: 12px;
   line-height: 1.3;
+
+  -webkit-animation: fadein 1s ; /* Safari, Chrome and Opera > 12.1 */
+      -moz-animation: fadein 1s; /* Firefox < 16 */
+       -ms-animation: fadein 1s; /* Internet Explorer */
+        -o-animation: fadein 1s; /* Opera < 12.1 */
+           animation: fadein 1s;
 
 }
 
