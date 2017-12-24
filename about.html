@@ -63,30 +63,57 @@
         <h2>
             <a name="About-Me" class="anchor" href="#About-Me"><span class="octicon octicon-link"></span> </a>About Me: An Auto-Hagiography</h2>
 
-        <img src="images/Jersey-Flag.png" align="middle" style="width: 340px;" title="New Jersey Flag" />
 
-        <img src="images/DL.jpg" align="middle" style="width: 340px;" title="The 2016-2017 Stony Brook Drumline">
-        <img src="images/Band1.jpg" align="left" style="width: 350px; padding-right: 9px;" title="A nifty sign in the SBU Marchng Band Space">
+        <div id="slideShow1"></div>
+
+        <img id="slider" src="images/DL.jpg" style = "width: 550px; height:370px;">
+
+        <script type="text/javascript">
+          var imgArray = [
+              'images/DL.jpg',
+              'images/Jersey-Flag.png',
+              'images/Band1.jpg',
+              'images/Mehr.jpg',
+              'images/Math1.jpg',
+              'images/TKD.jpg',
+            ],
+            curIndex = 0;
+          imgDuration = 5000;
+
+          function slideShow() {
+            document.getElementById('slider').className += "fadeOut";
+            setTimeout(function() {
+              document.getElementById('slider').src = imgArray[curIndex];
+              document.getElementById('slider').className = "";
+            }, 1000);
+            curIndex++;
+            if (curIndex == imgArray.length) {
+              curIndex = 0;
+            }
+            setTimeout(slideShow, imgDuration);
+          }
+          slideShow();
+        </script>
 
 
+        <div>
+          <p style="font-size: 17px;">I hail from Park Ridge, New Jersey, a small town in Bergen County. The transition from such a small school district to something as large as Stony Brook University was something very eye-opening for me, and very intimidating as well. I was very
+            lucky to start my college experience off with the Spirit of Stony Brook Marching Band. For example, I started my Fall 2016 semester knowing only that one other person from Park Ridge attended this university, and since then, I've developed
+            a phenomenal network of friends (mainly members in the drum-line and computer science communities). They've seen me at my best and my worst, and I'm happy to have them at my back.</p>
 
-        <p style="font-size: 17px;">I hail from Park Ridge, New Jersey, a small town in Bergen County. The transition from such a small school district to something as large as Stony Brook University was something very eye-opening for me, and very intimidating as well. I was very
-          lucky to start my college experience off with the Spirit of Stony Brook Marching Band. For example, I started my Fall 2016 semester knowing only that one other person from Park Ridge attended this university, and since then, I've developed a
-          phenomenal network of friends (mainly members in the drum-line and computer science communities). They've seen me at my best and my worst, and I'm happy to have them at my back.</p>
+        </div>
 
-
-        <img src="images/Mehr.jpg" align="middle" style="Width: 600px; height: 340px;" title="My friends have given me the moniker 'Bean'. There are too many jokes to count, and that's just the Bean-related humor!">
-        <img src="images/Math1.jpg" align="right" style="Width: 390px;">
-        <img src="images/TKD.jpg" align="middle" style="Width: 300px;">
-
-        <p style="font-size: 14px;"> Before becoming heavily interested and invested in Computer Science and Mathematics, I initially had the intention to attend college for music, as I've been playing percussion since 2007. That endeavor ended for two reasons: One of them was because
-          I stumbled upon an introductory programming class and instantly fell in love with it; the other was because, at the time, I thought I'd be going to school for something that I already know how to do. In addition. Luckily at Stony Brook University, I can keep both
-          my love of music and my love of programming and Computer Science.</p>
+        <br></br>
 
 
+        <p style="font-size: 17px;"> Before becoming heavily interested and invested in Computer Science and Mathematics, I initially had the intention to attend college for music, as I've been playing percussion since 2007. That endeavor ended for two reasons: One of them was because
+          I stumbled upon an introductory programming class and instantly fell in love with it; the other was because, at the time, I thought I'd be going to school for something that I already know how to do. In addition. Luckily at Stony Brook University,
+          I can keep both my love of music and my love of programming and Computer Science.</p>
+
+          <br></br>
 
 
-        <p style="font-size: 14px;"> Outside of academia and drumming, I practice Tae-Kwon-Do, a Korean martial art, and have been since 2004. I have kept a steady pace towards bettering myself in the art. It's changed for me over the years, starting out as something that looked
+        <p style="font-size: 17px;"> Outside of academia and drumming, I practice Tae-Kwon-Do, a Korean martial art, and have been since 2004. I have kept a steady pace towards bettering myself in the art. It's changed for me over the years, starting out as something that looked
           cool while watching television to a way to better myself as a person, teach me discipline, etc. Through this way of thinking and acting, I have progressed to a 4th degree black belt (the rank of "Master"), and at this rank, I have gained enough
           knowledge to be able to teach other students the theory and concepts of Tae-Kwon-Do, which I do when I'm at home for a break or for the summer. It's teachings are really applicable to many other aspects of life, which is pretty cool as well.</p>
 
@@ -112,7 +139,7 @@
         <p><a onclick="alreadyHere();" class="button">About Me</a></p>
         <p><a href="Contact.html" class="button">Contact Me</a></p>
         <p><a href="misc.html" class="button">Miscellaneous</a></p>
-        <p><a href="projects.html" class="button">Projects (In progress)</a></p>
+        <p><a href="projects.html" class="button">Projects</a></p>
 
       </aside>
     </div>
