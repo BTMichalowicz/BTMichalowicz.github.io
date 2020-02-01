@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
-  <title>Projects</title>
+  <title>Recent Projects</title>
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +25,7 @@
   <style type="text/css">
     body {
       /*  background-color: #092140*/
-     background: transparent url('https://www.xmple.com/wallpaper/gradient-blue-black-linear-3840x2160-c2-000000-0000cd-a-60-f-14.svg');
+     background: transparent url('images/background.jpg');
      /* background-size: 2000px 2100px;*/
       background-repeat: repeat;
       background-attachment: scroll;
@@ -90,7 +90,7 @@
     }
   </style>
 
-
+<!-- TODO: Gerrymender, xv6, for projects -->
 
 </head>
 
@@ -166,21 +166,27 @@
 
 
 
-               <h3 style = "color:#f9f1db;"> Metro Map Maker</h3>
+               <h3 style = "color:#f9f1db;"> <a href="https://github.com/BTMichalowicz/Gerry-mender"> Gerrymender </a></h3>
 
-       <p style="font-size: 16px; color:#f9f1db;"> This application was created with the goal of making subway/metro railways easier. Completed throughout the Fall 2017 semester, this was my first large software (1000+ lines of code) project. The application features saving and loading data, manipulation of images, text, geometric objects, and undo/redo transactions through the use of the Java language. <a href="https://github.com/BTMichalowicz/MetroMapMaker219" target="_blank"> Source Code.</a></p>
+       <p style="font-size: 16px; color:#f9f1db;"> My capstone project, I worked with two fellow students to create an application to fix the error of political gerrymandering by maximizing the number of Majority/Minority Districts. I took the role of preprocessing the data and designing the database tables extensively using Python's pandas and geopandas library, MySQL, and helping connect it to the front end.</p>
 
 <br><br><br>
-        <h3 style = "color:#f9f1db;"> 2048 in MIPS Assembly </h3>
+        <h3 style = "color:#f9f1db;"> MIT's xv6 Modifications</h3>
 
-       <p style="font-size: 16px;color:#f9f1db;"> The final project of my CSE 220 (Systems Fundamentals I) course was to create functions simulating the player moves possible in the online game 2048. This course (and the assignments in it) jumpstarted my love for computer systems and architecture, which is what I'd like to do in Computer Science.
+       <p style="font-size: 16px;color:#f9f1db;"> Inspired by my course in operating systems and its use of MIT's xv6 operating system (a redesign of Unix v6 to allow for some more modern features for a system running on computers of the 70s and 80s), a partner and I were tasked to modify the system using x86 assembly and the C language through use of pointers, syscall numbers, and CPU interrupts to allow for transfer of control and data between the user and kernel memory. I look forward to experimenting with it in the future.
        </p>
 
        <br><br><br>
 
-       <h3 style = "color:#f9f1db;"> Student Records </h3>
+       <h3 style = "color:#f9f1db;"> Computer Architecture Research: SIMICS/FeS2 </h3>
 
-       <p style="font-size: 16px; color:#f9f1db;"> While picking up the C language to delve into systems, one of the first things I did to test my knowledge was create a small database in C that could house and hold student records. The database is formed with a linked-list backing structure, runs in the *nix terminal, and supports a combination of 4 flags.</p>
+       <p style="font-size: 16px; color:#f9f1db;"> My first research project was analyzing CPU performance metrics through the <a href = "https://www.spec.org/cpu2006/docs/">SPEC CPU2006</a> benchmarking suite using Linux's "perf" command and Intel VTune tools and configuring the <a href = "https://en.wikipedia.org/wiki/Simics"> SIMICS CPU simulator</a> (run on the FeS2 x86 platform) to match the performance metrics of the real-system. Through this, we could potentially find improvements in even the latest and greatest CPU units for server architectures and regular units.</p>
+
+        <br><br><br>
+
+       <h3 style = "color:#f9f1db;"> <a href= "https://github.com/BTMichalowicz/E-Commerce">E-Commerce Pro</a> </h3>
+
+       <p style="font-size: 16px; color:#f9f1db;"> In learning about database systems, I was tasked with (as well as a fun project for myself) creating a simple e-commerce application. With this application, I used a mixture of MySQL as well as Node.JS for managing of the backend and connection to front end, and embedded JavaScript (*.ejs) files on the front end for dynamic updating of web pages. It was interesting ensuring that each transaction was a truly correct transaction, and that we had a robust system by our presentation time.</p>
 
          <br><br><br>
 
@@ -195,7 +201,7 @@
        <p style="font-size: 16px;color:#f9f1db;"> My website. You're viewing it! What started out as some HTML thrown together has become my website. Enjoy!</p>
        <br><br><br>
         <h3 style = "color:#f9f1db;"> <a href = "https://mlhonda.bandcamp.com/releases" target = "_blank">Class Clowns and Prom Queens </a></h3>
-       <p style="font-size: 16px;color:#f9f1db;"> In the summer of 2017, I had the honor of playing the drums for one of my best friend's albums. I recorded the drums all in a day, and I can finally cross off my bucket list that I recorded drums on an album! Check it out, and support my friend's work!</p>
+       <p style="font-size: 16px;color:#f9f1db;"> In the summer of 2017, I had the honor of playing the drums for one of my best friend's albums. I recorded the all the drum tracks in one day, and I can finally cross off my bucket list that I recorded drums on an album! Check it out, and support my friend's work!</p>
 
        <br><br><br>
        <h3 style = "color:#f9f1db;"> <a href = "https://github.com/BTMichalowicz/Ketchup_On_Work">"Ketchup" On Work</a></h3>
@@ -205,14 +211,17 @@
 
       </div>
       <div class="span6">
-                <br><br><br>
-     <img  src = 'images/M3Logo.JPG' align="middle" title="Metro Map Maker">
+                <br>
+     <img  src = 'images/Gerrymender.png' align="middle" title="Metro Map Maker">
      <br><br><br>
 
-       <img src="images/Pipeline_MIPS.jpg" style="height: 200px; " align="middle" title="MIPS Pipelined Processor">
+       <img src="images/xv6.png" style="height: 200px; " align="middle" title="XV6 Operating System Image">
         <br><br>   <br>
-      <img src='images/Data.jpg' style="height:240px; width:450px;" align="middle" title="Data">
-           <br><br>   <br>
+      <img src='images/IntelCPU.jpg' style="height:240px; width:450px;" align="middle" title="Intel CPU">
+           <br><br>   <br><br>
+      <img src='images/MySQL.png' style="height:240px; width:450px;" align="middle" title="MySQL">
+                <br><br>   <br>
+
       <img src='images/Cache.png' style="height:225px; width:450px;" align="middle" title="Cache-Simulator">
       <br><br><br><br><br><br><br><br><br>
       <img src='images/album-front.jpg' style="height:220px; width:230px;" align="middle"><img src='images/album-back.jpg' style="height:220px; width:230px" align="middle">
