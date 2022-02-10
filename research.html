@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
-  <title>Contact Me!</title>
+  <title>Research</title>
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,11 +24,11 @@
 
   <style type="text/css">
     body {
-      /*  background-color: #092140*/;
-      background: transparent url('images/background.jpg');
+      /*  background-color: #092140*/
+     background: transparent url('images/background.jpg');
      /* background-size: 2000px 2100px;*/
-        background-repeat: repeat;
-        background-attachment: scroll;
+      background-repeat: repeat;
+      background-attachment: scroll;
     }
 
     #main {
@@ -127,7 +127,7 @@
                 <canvas class="particles-js-canvas-el">
 
               </div>
-<!--               <i id="quote" style="color: #f9f1db;"><strong><br> Communication is The Key to Success.</strong></i></td> -->
+              <!-- <i id="quote" style="color: #f9f1db;"><strong><br> And they said CS Majors don't have lives</strong></i></td> -->
 
           </tr>
         </tbody>
@@ -144,12 +144,11 @@
           <div class="container">
             <ul class="nav">
               <li ><a href="index.html#">Home</a></li>
-          <!--     <li ><a href="about.html">Bio</a></li> -->
-              <li class="active"><a href="Contact.html">Contact Me</a></li>
+              <li><a href="Contact.html">Contact Me</a></li>
               <li><a href="misc.html">Misc.</a></li>
               <li><a href="projects.html">Projects</a></li>
               <li><a href="music.html">Music</a></li>
-              <li><a href="research.html">Research</a></li>
+              <li class="active"><a href="research.html"></a></li>
 							<!--<li><a href="300_HW.html">Tech. Communications</a></li>-->
 
             </ul>
@@ -165,26 +164,23 @@
     <!-- Example row of columns -->
     <div class="row-fluid">
       <div class="span10">
-        <h3><span style="color: #f9f1db">How to Contact Me:</span></h3>
-        <p style = "color:#f9f1db">
-          <img src="images/OSUBanner.png" align="middle" style="width: 570px; height: 120px; background:white;">
+        <h3><span style="color: #f9f1db">Research</span></h3>
+        <br>
+          <h4><span style="color: #f9f1db">What am I currently working on?</span></h4>
+          <p style="color: #f9f1db">My research primarily lies in High-Performance Computing (HPC). For the uninitiated, I work on software that helps make giant supercomputers run, namely the <a href="mvapich.cse.ohio-state.edu">MVAPICH2</a> project. In particular, I'm interested in optimizing intra-node communication -- for example, AMD's EPYC line of processors can have up to sixty-four cores on a single socket, and this can turn into a performance bottleneck if not optimized alongside <em>inter-node</em> communication. Current mechanisms in place include the XPMEM software, CMA, and persistent communication defined by the MPI standard. In addition, enhancements to technologies at the physical layer (RoCE, InfiniBand, other interconnects) help with this, and I want to leverage these enhancements in my designs.</p>
+          <br>
+          <p style="color: #f9f1db">
+            My personal research interests include HPC, Parallel/Computer Architecture, HPC Virtualization (how to use virtualization for HPC systems), Compiler Technologies, and thanks to a course taught by my advisor, I occasionally dabble in Deep Learning at Scale.
+         <h4><span style="color: #f9f1db">Previous Work</span></h4>
+          <p style="color: #f9f1db">
+             At Stony Brook University, my research experience began with the <a href="https://compas.cs.stonybrook.edu">COMPAS lab</a> under Dr. Michael Ferdman, where I helped a then-PhD student work on a way for eliding over redundant instructions at the processor level. Being my first foray into computer science research, I expected to stay in this field at the time, but a mixture of factors (interests, coursework, etc.) pushed me directly into HPC.</p>
+             <br>
+             <p style="color: #f9f1db">
+             During my master's degree (also at Stony Brook), I was fortunate to study the A64FX processor through both Stony Brook's <a href="https://stonybrook.edu/ookami">Ookami</a> cluster and the <a href="https://www.fujitsu.com/global/about/innovation/fugaku/">Fugaku supercomputer</a>. Primarily, I worked with different compiler toolchains (GCC, ARM, Cray, Fujitsu) and a combination of OpenMP and various MPI libraries across several applications -- SpecHPC, the FLASH code, HPCG, and the OSU micro-benchmarks, among others. This work resulted in a few papers on initial experiences with Ookami and the A64FX paper, OpenMP studies, and some experiences porting code to the processor.
+           </p>
 
-        <h3> <a href="mailto:michalowicz.2@osu.edu"> michalowicz.2@osu.edu</a></h3>
-        <p style = "color:#f9f1db; font-size: 16px;"> This is my main email for my time at The Ohio State University. I tend to respond quickly when not in class/between classes/sleeping. Unless I'm unavailable by it, please contact me through <a href="mailto:benjaminmichalowicz98@gmail.com"> benjaminmichalowicz98@gmail.com</a>; this is my personal email.
-
-        <br><br><br><be>
-
-        <img src="images/linked.png" align="middle" style="width: 150px; padding-right: 40px;">
-        <h3> <a href = "https://www.linkedin.com/in/benjamin-michalowicz-5b4027138/" target = "_blank"> My LinkedIn Page</a></h3>
-        <p style = "color:#f9f1db; font-size: 16px;">My LinkedIn profile here allows you to see me from a professional point of view.</p>
-
-        <img src = "images/FB.png" align="middle" style = "width: 130px;">
-        <h3> <a href="https://www.facebook.com/ben.michalowicz" target = "_blank"> My Facebook Page</a></h3>
-        <p style = "color:#f9f1db; font-size: 16px;"> My Facebook page is the second most efficient way to contact me after email. I'm not a huge social media person, but should you contact me in this way, I will try and respond as quickly as I can.</p>
-
-        <p> </p>
+          <h3 style="color: #f9f1db"> Check out my <a href="https://www.researchgate.net/profile/Benjamin-Michalowicz"> ResearchGate</a> profile for my publications.</h3>  
       </div>
-
 
 
 
