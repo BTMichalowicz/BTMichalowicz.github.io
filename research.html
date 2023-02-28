@@ -167,10 +167,13 @@
         <h3><span style="color: #f9f1db">Research</span></h3>
         <br>
           <h4><span style="color: #f9f1db">What am I currently working on?</span></h4>
-          <p style="color: #f9f1db">My research primarily lies in High-Performance Computing (HPC). For the uninitiated, I work on software that helps giant supercomputers run people's applications --- namely the <a href="https://mvapich.cse.ohio-state.edu">MVAPICH2</a> software. In particular, I'm interested in optimizing point-to-point operations (A sends something to B, or vice-versa); for example, AMD's EPYC line of processors can have up to sixty-four cores on a single socket, and this can turn into a performance bottleneck if not optimized alongside <em>inter-node</em> communication, where a mixture of APIs, mechanisms, and techniques can be used in terms of how to best send a message across a network. Current mechanisms in place for intra-node communication include XPMEM, CMA (Cross-memory-attach), and persistent communication defined by the MPI standard (which can work for both inter-and-intra-node communication). In addition, enhancements to technologies at the hardware level help with this, and I want to leverage these enhancements in my designs. In addition, I'm focusing on verbs-level communication and how to incorporate the latest Infiniband features into the MVAPICH2 code. </p>
+          <p style="color: #f9f1db">My research primarily lies in High-Performance Computing (HPC). For the uninitiated, I work on software that helps giant supercomputers run people's applications --- namely the <a href="https://mvapich.cse.ohio-state.edu">MVAPICH</a> software (Google "Message Passing Interface" for some more high-level details on what this is). Broadly, I'm interested in the lower-level aspects of the HPC Ecosystem -- network level APIs like InfiniBand's "IB-Verbs" library and how to efficiently utilize their more advanced features, low-level shared memory modules like XPMEM and CMA, etc. In addition, I'm a fan of heterogeneous hardware and SmartNIC's like NVIDIA's BlueField DPUs </p>
           <br>
           <p style="color: #f9f1db">
-            My personal research interests include HPC, Parallel/Computer Architecture, HPC Virtualization (how to use virtualization for HPC systems), Heterogeneous Computing, Compiler Technologies, and thanks to a course taught by my advisor, I occasionally dabble in Deep Learning at Scale.
+            My personal research interests include HPC, Parallel/Computer Architecture, HPC Virtualization (how to use virtualization for HPC systems), Heterogeneous Computing, and Compiler Technologies.
+
+            <br>
+          </p>
          <h4><span style="color: #f9f1db">What have I previously done?</span></h4>
           <p style="color: #f9f1db">
              At Stony Brook University, my research experience began with the <a href="https://compas.cs.stonybrook.edu">COMPAS lab</a> under Dr. Michael Ferdman, where I helped a then-PhD student work on a way for eliding over redundant instructions at the processor level. During this time, I also attended ISCA 2019 on a scholarship through their &mu;-Arch program for undergrads. Being my first foray into computer science research, I expected to stay in this field at the time, but a mixture of factors (interests, coursework, etc.) pushed me directly into HPC.</p>
@@ -179,7 +182,25 @@
              During my master's degree (also at Stony Brook), I was fortunate to study the A64FX processor through both Stony Brook's <a href="https://stonybrook.edu/ookami">Ookami</a> cluster and the <a href="https://www.fujitsu.com/global/about/innovation/fugaku/">Fugaku supercomputer</a> under Dr. Barbara Chapman. Primarily, I worked with different compiler toolchains (GCC, ARM, Cray, Fujitsu) and a combination of OpenMP and various MPI libraries across several applications -- SpecHPC, the FLASH code, HPCG, and the OSU micro-benchmarks, among others. This work resulted in a few papers on initial experiences with Ookami, studies of OpenMP behavior on the processor, and some experiences porting code to it to enable use of the Scalable Vector Extension (SVE) instructions available on the A64FX.
            </p>
 
-          <h3 style="color: #f9f1db"> Check out my <a href="https://www.researchgate.net/profile/Benjamin-Michalowicz"> ResearchGate</a> profile for my publications.</h3>  
+          <h5 style="color: #f9f1db"> Check out my ORCID profile for my publications:
+
+              <a
+    id="cy-effective-orcid-url"
+    class="underline"
+     href="https://orcid.org/0000-0002-7450-5787"
+     target="orcid.widget"
+     rel="me noopener noreferrer"
+     style="vertical-align: top">
+     <img
+        src="https://orcid.org/sites/default/files/images/orcid_16x16.png"
+        style="width: 1em; margin-inline-start: 0.5em"
+        alt="ORCID iD icon"/>
+      https://orcid.org/0000-0002-7450-5787
+    </a>
+
+
+          </h5>  
+
       </div>
 
 
