@@ -1,0 +1,311 @@
+<!-- Stolen from https://github.com/ZacharyRabin/deadlines-embed/blob/main/pomodoro/index.html, Many Thanks to Zach for showing this to me @ Kafe Kerouac, October 13, 2026 -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pomodoro</title>
+<link id="fav" rel="icon" href="data:,">
+<style>
+:root{--bg:#171717;--text:#ececec;--mute:#8a8a8a;--c:#ff8a7a;
+  --ring:clamp(110px,min(86vw,calc(100vh - 190px)),360px);
+  --b:clamp(34px,calc(var(--ring)*.15),50px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%;overflow:hidden;color:var(--text);
+  font:14px/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{background:radial-gradient(110% 80% at 50% 36%,color-mix(in srgb,var(--c) 15%,transparent),transparent 68%),var(--bg)}
+#app{position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:10px}
+#tabs{display:flex;gap:4px;background:#222;border-radius:999px;padding:3px}
+.tab{border:0;background:none;color:var(--mute);padding:4px 12px;border-radius:999px;font:inherit;font-size:12px;cursor:pointer;transition:background .3s,color .3s}
+.tab.on{background:color-mix(in srgb,var(--c) 24%,#222);color:var(--text)}
+#center{display:flex;flex-direction:column;align-items:center;gap:12px}
+#side{display:flex;flex-direction:column;align-items:center;gap:10px}
+@media (min-aspect-ratio:8/5){
+  :root{--ring:clamp(110px,min(calc(100vh - 100px),40vw),360px)}
+  #center{flex-direction:row;gap:28px}
+}
+#ring{position:relative;width:var(--ring);height:var(--ring);
+  filter:drop-shadow(0 0 18px color-mix(in srgb,var(--c) 28%,transparent))}
+#ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.track{stroke:#262626}
+.prog{stroke:var(--c);stroke-linecap:round;transition:stroke-dashoffset .25s linear,stroke .4s}
+#inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2%}
+#emoji{font-size:calc(var(--ring)*.13);line-height:1;filter:drop-shadow(0 0 .14em color-mix(in srgb,var(--c) 55%,transparent))}
+#time{font-weight:600;font-size:calc(var(--ring)*.21);letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+#label{color:var(--mute);font-size:max(11px,calc(var(--ring)*.055));text-transform:uppercase;letter-spacing:.14em}
+@keyframes pulse{0%{transform:scale(1)}40%{transform:scale(1.05)}100%{transform:scale(1)}}
+#ring.done{animation:pulse .7s ease 2}
+#controls{display:flex;align-items:center;gap:14px}
+.btn{width:var(--b);height:var(--b);border-radius:50%;background:#242424;border:1px solid #333;color:var(--text);
+  font-size:calc(var(--b)*.4);cursor:pointer;display:grid;place-items:center;padding:0;transition:transform .15s}
+.btn:hover{transform:scale(1.07)}
+.btn.main{width:calc(var(--b)*1.4);height:calc(var(--b)*1.4);background:var(--c);border-color:transparent;color:#1a1a1a;font-size:calc(var(--b)*.55)}
+#meta{display:flex;align-items:center;gap:10px;color:var(--mute);font-size:12px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2e2e2e;margin:0 2px;transition:background .3s}
+.dot.on{background:var(--c)}
+#notice{min-height:24px;display:flex;justify-content:center}
+.pill{background:#222;border:1px solid #333;border-radius:999px;color:var(--mute);font:inherit;font-size:11.5px;padding:3px 11px;cursor:pointer}
+.pill:hover{color:var(--text);border-color:#555}
+.pill.ok{color:#9be3c0;border-color:#2f4a3e}
+.hint{color:var(--mute);font-size:11.5px;text-align:center;max-width:280px}
+#gear{position:absolute;top:8px;left:8px;width:38px;height:38px;border-radius:50%;background:#222;border:1px solid #333;
+  color:var(--text);display:grid;place-items:center;cursor:pointer;padding:0;z-index:2;transition:background .2s}
+#gear svg{display:block;width:20px;height:20px}
+#gear:hover{background:#2c2c2c}
+#panel{position:absolute;inset:8px;background:#1f1f1f;border:1px solid #333;border-radius:12px;padding:14px;z-index:5;display:flex;flex-direction:column;gap:10px;overflow:auto}
+#panel label{display:flex;justify-content:space-between;align-items:center;gap:10px}
+#panel input[type=number]{width:60px;padding:4px 6px;background:#2b2b2b;border:1px solid #3a3a3a;border-radius:6px;color:var(--text);font:inherit}
+#pdone{align-self:flex-end;background:#3a3a3a;color:var(--text);border:0;border-radius:6px;padding:6px 14px;cursor:pointer;font:inherit}
+.conf{position:absolute;pointer-events:none;font-size:18px;animation:fly 1.4s ease-out forwards}
+@keyframes fly{from{opacity:1;transform:translate(0,0) rotate(0)}to{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--r))}}
+</style></head><body>
+<div id="app">
+  <button id="gear" title="Settings" aria-label="Settings">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+  </button>
+  <div id="tabs">
+    <button class="tab" data-m="focus">Focus</button>
+    <button class="tab" data-m="short">Break</button>
+    <button class="tab" data-m="long">Long</button>
+  </div>
+  <div id="center">
+    <div id="ring">
+      <svg viewBox="0 0 200 200">
+        <circle class="track" cx="100" cy="100" r="88" fill="none" stroke-width="8"/>
+        <circle id="prog" class="prog" cx="100" cy="100" r="88" fill="none" stroke-width="8"/>
+      </svg>
+      <div id="inner"><div id="emoji"></div><div id="time"></div><div id="label"></div></div>
+    </div>
+    <div id="side">
+      <div id="controls">
+        <button class="btn" id="reset" title="Reset">↺</button>
+        <button class="btn main" id="play" title="Start / pause">▶</button>
+        <button class="btn" id="skip" title="Skip">⏭</button>
+      </div>
+      <div id="meta"><span id="dots"></span><span id="today"></span></div>
+      <div id="notice"></div>
+    </div>
+  </div>
+  <div id="panel" hidden>
+    <b>Settings</b>
+    <label>Focus (minutes)<input id="fFocus" type="number" min="1" max="180"></label>
+    <label>Break (minutes)<input id="fShort" type="number" min="1" max="180"></label>
+    <label>Long break (minutes)<input id="fLong" type="number" min="1" max="180"></label>
+    <label>Auto-start next session<input id="fAuto" type="checkbox"></label>
+    <label>Sound<input id="fSound" type="checkbox"></label>
+    <label>Keep alert on screen until dismissed<input id="fSticky" type="checkbox"></label>
+    <button id="pdone">Done</button>
+  </div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const store = {
+  get(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+const FOCUS_EMOJI = "📚";
+const MODES = {
+  focus:{emoji:FOCUS_EMOJI, label:"Focus",      color:"#ff8a7a"},
+  short:{emoji:"☕",        label:"Break",      color:"#6fe0b5"},
+  long: {emoji:"🌴",        label:"Long break", color:"#8aa4ff"}
+};
+const TIPS = ["Stand up and roll your shoulders.","Look 20 feet away for 20 seconds.","Water time 💧","Stretch your wrists.","Step away from the screen.","Breathe out slowly, three times."];
+const tip = () => TIPS[Math.floor(Math.random()*TIPS.length)];
+const EMBEDDED = (() => { try{ return window.self !== window.top; }catch(e){ return true; } })();
+const CIRC = 2*Math.PI*88;
+const svgIcon = e => "data:image/svg+xml," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${e}</text></svg>`);
+
+let cfg = Object.assign({focus:45, short:10, long:20, auto:false, sound:true, sticky:true}, store.get("pomoCfg")||{});
+let stats = store.get("pomoStats") || {};
+const today = new Date().toDateString();
+if(stats.day !== today) stats = {day:today, done:0, cycle:0};
+let mode = "focus", running = false, endAt = 0, remaining = cfg.focus*60, finishT = null, alertTitle = null, lastFav = "", awayMsg = "";
+const total = () => cfg[mode]*60;
+$("prog").style.strokeDasharray = CIRC;
+
+// --- saved timer state (survives reloads / suspended pages) ---
+// Stored in localStorage, with window.name as a fallback because it survives an iframe reload
+// even when the browser blocks storage inside an embed.
+const SKEY = "pomoState";
+function save(o){
+  o = Object.assign({mode, running, endAt, remaining, t:Date.now()}, o || {});
+  store.set(SKEY, o);
+  try{ window.name = "pomo:" + JSON.stringify(o); }catch(e){}
+}
+function loadSaved(){
+  const found = [store.get(SKEY)];
+  try{ if(String(window.name).startsWith("pomo:")) found.push(JSON.parse(window.name.slice(5))); }catch(e){}
+  return found.filter(o => o && MODES[o.mode]).sort((a,b) => (b.t||0)-(a.t||0))[0] || null;
+}
+
+function render(){
+  const m = MODES[mode];
+  document.documentElement.style.setProperty("--c", m.color);
+  const s = Math.ceil(remaining);
+  const txt = String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
+  $("time").textContent = txt;
+  $("emoji").textContent = m.emoji;
+  $("label").textContent = m.label;
+  $("prog").style.strokeDashoffset = CIRC*(1 - remaining/total());
+  $("play").textContent = running ? "❚❚" : "▶";
+  document.querySelectorAll(".tab").forEach(b => b.classList.toggle("on", b.dataset.m === mode));
+  const filled = mode === "long" ? 4 : stats.cycle % 4;
+  $("dots").innerHTML = [0,1,2,3].map(i => `<span class="dot ${i<filled?"on":""}"></span>`).join("");
+  $("today").textContent = `${stats.done} ${FOCUS_EMOJI} today`;
+  document.title = alertTitle || (running ? `${txt} · ${m.emoji} ${m.label}` : "Pomodoro");
+  if(lastFav !== m.emoji){ lastFav = m.emoji; $("fav").href = svgIcon(m.emoji); }
+}
+
+// --- sound ---
+let ac;
+function initAudio(){ try{ ac = ac || new (window.AudioContext||window.webkitAudioContext)(); ac.resume(); }catch(e){} }
+function chime(){
+  if(!cfg.sound || !ac) return;
+  try{
+    const t = ac.currentTime;
+    [[660,0],[880,.18],[1320,.36]].forEach(([f,d]) => {
+      const o = ac.createOscillator(), g = ac.createGain();
+      o.type = "sine"; o.frequency.value = f;
+      o.connect(g); g.connect(ac.destination);
+      g.gain.setValueAtTime(0, t+d);
+      g.gain.linearRampToValueAtTime(.18, t+d+.02);
+      g.gain.exponentialRampToValueAtTime(.0001, t+d+.5);
+      o.start(t+d); o.stop(t+d+.55);
+    });
+  }catch(e){}
+}
+
+// --- desktop notifications ---
+const permState = () => ("Notification" in window) ? Notification.permission : "unsupported";
+function notify(title, body){
+  if(permState() !== "granted") return;
+  try{
+    const n = new Notification(title, {body, tag:"pomodoro", renotify:true, requireInteraction:!!cfg.sticky, icon:svgIcon(MODES[mode].emoji)});
+    n.onclick = () => { try{ window.focus(); }catch(e){} n.close(); };
+  }catch(e){}
+}
+function renderNotice(){
+  const p = permState();
+  let html;
+  if(awayMsg) html = `<span class="hint">✅ ${awayMsg}</span>`;
+  else if(p === "unsupported") html = '<span class="hint">Desktop alerts aren\'t supported in this browser</span>';
+  else if(p === "granted") html = '<button class="pill ok" data-a="test">🔔 Alerts on · test</button>';
+  else if(EMBEDDED) html = '<button class="pill" data-a="pop">↗ Pop out for desktop alerts</button>';
+  else if(p === "denied") html = '<span class="hint">Alerts blocked. Allow notifications for this site in your browser settings.</span>';
+  else html = '<button class="pill" data-a="enable">🔔 Enable desktop alerts</button>';
+  $("notice").innerHTML = html;
+}
+function askPerm(){
+  if(EMBEDDED || permState() !== "default") return renderNotice();
+  try{ Promise.resolve(Notification.requestPermission()).then(renderNotice); }catch(e){ renderNotice(); }
+}
+$("notice").onclick = e => {
+  const a = e.target.dataset.a; if(!a) return;
+  if(a === "pop") window.open(location.href.split("#")[0], "pomodoro-popup", "popup=yes,width=360,height=540");
+  if(a === "enable") askPerm();
+  if(a === "test") notify("Pomodoro " + FOCUS_EMOJI, "Alerts are working ✅");
+};
+
+// --- fun ---
+function celebrate(){
+  const r = $("ring"); r.classList.add("done"); setTimeout(()=>r.classList.remove("done"), 1500);
+  const app = $("app"), icons = [FOCUS_EMOJI,"✨","🎉","⭐"];
+  for(let i=0;i<16;i++){
+    const s = document.createElement("span");
+    s.className = "conf"; s.textContent = icons[i % icons.length];
+    s.style.left = "50%"; s.style.top = "45%";
+    s.style.setProperty("--dx", (Math.random()*280-140)+"px");
+    s.style.setProperty("--dy", (-60-Math.random()*150)+"px");
+    s.style.setProperty("--r", (Math.random()*360-180)+"deg");
+    app.appendChild(s); setTimeout(()=>s.remove(), 1500);
+  }
+}
+
+// --- timer ---
+function go(m){ mode = m; running = false; clearTimeout(finishT); remaining = total(); save(); render(); }
+function start(fromUser){
+  if(fromUser){ initAudio(); askPerm(); }
+  if(remaining <= 0) remaining = total();
+  endAt = Date.now() + remaining*1000;
+  running = true;
+  clearTimeout(finishT);
+  finishT = setTimeout(finish, remaining*1000 + 30);   // fires even when the tab is in the background
+  if(awayMsg){ awayMsg = ""; renderNotice(); }
+  save(); render();
+}
+function pause(){ remaining = Math.max(0,(endAt-Date.now())/1000); running = false; clearTimeout(finishT); save(); render(); }
+function toggle(){ running ? pause() : start(true); }
+function reset(){ running = false; clearTimeout(finishT); remaining = total(); save(); render(); }
+function skip(){
+  if(mode === "focus"){
+    stats.cycle++; store.set("pomoStats", stats);   // a skipped focus still advances the cycle (but not the focus count)
+    go(stats.cycle % 4 === 0 ? "long" : "short");
+  } else {
+    go("focus");
+  }
+}
+function finish(){
+  if(!running) return;
+  running = false; remaining = 0; clearTimeout(finishT);
+  const wasFocus = mode === "focus";
+  if(wasFocus){ stats.done++; stats.cycle++; store.set("pomoStats", stats); }
+  const next = wasFocus ? (stats.cycle % 4 === 0 ? "long" : "short") : "focus";
+  const title = wasFocus ? "Focus complete " + FOCUS_EMOJI : "Break's over ☕";
+  const body = wasFocus ? `${MODES[next].label} next (${cfg[next]} min). ${tip()}` : "Ready for another round?";
+  chime(); celebrate(); notify(title, body);
+  if(document.hidden) alertTitle = "🔔 " + title;
+  save({mode:next, running:false, endAt:0, remaining:cfg[next]*60});   // a reload during the 1.6s pause lands on the next session
+  render();
+  setTimeout(() => { go(next); if(cfg.auto) start(false); }, 1600);
+}
+function tick(){
+  if(!running) return;
+  remaining = Math.max(0,(endAt-Date.now())/1000);
+  if(remaining <= 0) finish();
+  render();
+}
+setInterval(tick, 250);
+document.addEventListener("visibilitychange", () => { if(!document.hidden){ alertTitle = null; tick(); } render(); });
+window.addEventListener("pageshow", e => { if(e.persisted) tick(); });
+
+// --- wiring (play/pause button is the only way to start or pause) ---
+$("play").onclick = toggle;
+$("reset").onclick = reset; $("skip").onclick = skip;
+document.querySelectorAll(".tab").forEach(b => b.onclick = () => go(b.dataset.m));
+
+// --- settings ---
+function fillPanel(){
+  $("fFocus").value = cfg.focus; $("fShort").value = cfg.short; $("fLong").value = cfg.long;
+  $("fAuto").checked = cfg.auto; $("fSound").checked = cfg.sound; $("fSticky").checked = cfg.sticky;
+}
+function readPanel(){
+  const n = (id, d) => Math.min(180, Math.max(1, parseInt($(id).value) || d));
+  cfg.focus = n("fFocus",25); cfg.short = n("fShort",5); cfg.long = n("fLong",15);
+  cfg.auto = $("fAuto").checked; cfg.sound = $("fSound").checked; cfg.sticky = $("fSticky").checked;
+  store.set("pomoCfg", cfg);
+  if(!running) remaining = total();
+  save(); render();
+}
+["fFocus","fShort","fLong","fAuto","fSound","fSticky"].forEach(id => $(id).onchange = readPanel);
+$("gear").onclick = () => { fillPanel(); $("panel").hidden = false; };
+$("pdone").onclick = () => { $("panel").hidden = true; };
+
+// --- restore after a reload or suspension ---
+(function restore(){
+  const st = loadSaved(); if(!st) return;
+  mode = st.mode;
+  if(st.running && st.endAt){
+    const left = (st.endAt - Date.now())/1000;
+    if(left > 0){ remaining = left; start(false); return; }
+    // the session ended while the page was away: count it and move to the next one, paused
+    const wasFocus = mode === "focus";
+    if(wasFocus){ stats.done++; stats.cycle++; store.set("pomoStats", stats); }
+    awayMsg = (wasFocus ? "Focus" : "Break") + " finished while the page was away";
+    mode = wasFocus ? (stats.cycle % 4 === 0 ? "long" : "short") : "focus";
+    remaining = total(); running = false; save();
+  } else {
+    remaining = (st.remaining > 0) ? Math.min(st.remaining, total()) : total();
+  }
+})();
+
+render(); renderNotice();
+</script></body></html>
